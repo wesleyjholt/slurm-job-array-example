@@ -55,11 +55,8 @@ if [ $TOTAL_SIMS -eq 0 ]; then
     exit 1
 fi
 
-echo "Found $TOTAL_SIMS simulation input files"
-
 # Calculate number of jobs needed
 NUM_JOBS=$(( (TOTAL_SIMS + SIMS_PER_JOB - 1) / SIMS_PER_JOB ))
-echo "Creating $NUM_JOBS job groups ($SIMS_PER_JOB simulations per job)"
 
 # Create grouped input files and output directories
 job_num=1
@@ -86,21 +83,9 @@ for input_file in "${INPUT_FILES[@]}"; do
     sim_count=$((sim_count + 1))
 done
 
-echo "Created $NUM_JOBS grouped input files in $GROUPED_FOLDER"
-echo "Created $TOTAL_SIMS output directories in $OUTPUTS_FOLDER"
-echo ""
-
 # Generate the job file
-echo "Generating job file..."
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 bash "$SCRIPT_DIR/generate_job_file.sh" "$RUN_SIMULATION_SCRIPT" "$SLURM_DEFAULTS_FILE" "$NUM_JOBS" "$PREFIX"
 
-echo ""
-echo "=========================================="
-echo "Setup Complete!"
-echo "=========================================="
-echo ""
-echo "Job file created: ${PREFIX}run.sh"
-echo ""
-echo "To submit the job array, run:"
-echo "  sbatch ${PREFIX}run.sh"
+echo "Created $NUM_JOBS job groups"
+echo "Submit with: sbatch ${PREFIX}run.sh"

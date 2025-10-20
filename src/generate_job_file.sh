@@ -55,7 +55,7 @@ fi
 mkdir -p logs
 
 # Create the job file
-echo "Creating job file: $JOB_FILE"
+# (removed verbose output)
 
 # Start with shebang
 echo "#!/bin/bash" > "$JOB_FILE"
@@ -131,7 +131,3 @@ echo "=========================================="
 EOF
 
 chmod +x "$JOB_FILE"
-echo "Job file created: $JOB_FILE"
-echo ""
-echo "To submit the job array, run:"
-echo "  sbatch $JOB_FILE"
