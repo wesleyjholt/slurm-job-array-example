@@ -22,6 +22,14 @@ bash src/setup.sh run_sim.sh slurm_defaults.txt inputs/ 5 myrun_
 sbatch myrun_run.sh
 ```
 
+***Interpretation:*** 
+"Setup a job array where:"
+- there are (at most) 5 simulations per job
+- a single simulation can be run with `bash run_sim.sh <input.yaml> <output_dir>`
+- the SLURM directives are taken from `slurm_defaults.txt`
+- input files are taken from the `inputs/` directory
+- this simulation setup is given the unique id "myrun_"
+
 ## What You Need
 
 1. **Simulation script** - Takes 2 arguments: `<input.yaml>` `<output_dir>`
