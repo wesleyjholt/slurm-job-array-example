@@ -1,0 +1,7 @@
+#SBATCH --time=00:30:00
+#SBATCH --mem=1G
+#SBATCH --cpus-per-task=1
+#SBATCH --partition=cpu
+#SBATCH --account=lilly-comp
+#SBATCH --qos=standby
+# Note: --output and --error default to logs/job_%A_%a.out and logs/job_%A_%a.err

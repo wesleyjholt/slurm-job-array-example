@@ -17,3 +17,8 @@ __pycache__/
 
 # Demo generated files
 demo_*
+examples/filter-papers/move/file_lists/
+examples/filter-papers/move/inputs/
+examples/filter-papers/move/transferred_files/
+examples/filter-papers/filter/file_lists/
+examples/filter-papers/filter/inputs/

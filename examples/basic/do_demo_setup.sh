@@ -1,0 +1,9 @@
+#!/bin/bash
+
+RUN_SIMULATION_SCRIPT="run_simulation.sh"
+SLURM_DEFAULTS_FILE="slurm_defaults.txt"
+INPUT_FILES_FOLDER="inputs/"
+SIMS_PER_JOB=3
+PREFIX="demo_"
+
+bash ../../src/setup.sh $RUN_SIMULATION_SCRIPT $SLURM_DEFAULTS_FILE $INPUT_FILES_FOLDER $SIMS_PER_JOB $PREFIX

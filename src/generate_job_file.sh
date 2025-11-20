@@ -37,6 +37,13 @@ ABS_RUN_SCRIPT=$(readlink -f "$RUN_SIMULATION_SCRIPT")
 GROUPED_FOLDER="${PREFIX}grouped_input_paths"
 OUTPUTS_FOLDER="${PREFIX}outputs"
 JOB_FILE="${PREFIX}run.sh"
+SHARED_TRANSFER_DIR_INPUT=${SHARED_TRANSFER_DIR:-${OUTPUTS_FOLDER}/shared_transfers}
+SHARED_TRANSFER_DIR_PATH=$(python3 - "$SHARED_TRANSFER_DIR_INPUT" <<'PY'
+import os, sys
+print(os.path.abspath(os.path.expanduser(sys.argv[1])))
+PY
+)
+mkdir -p "$SHARED_TRANSFER_DIR_PATH"
 
 # Check if required folders exist
 if [ ! -d "$GROUPED_FOLDER" ]; then
@@ -93,6 +100,8 @@ EOF
 # Add the specific paths (these need variable expansion)
 cat >> "$JOB_FILE" << EOF
 INPUT_GROUP_FILE="${GROUPED_FOLDER}/input_group_\$(printf '%04d' \$SLURM_ARRAY_TASK_ID).txt"
+SHARED_TRANSFER_DIR="$SHARED_TRANSFER_DIR_PATH"
+mkdir -p "\$SHARED_TRANSFER_DIR"
 
 # Check if input group file exists
 if [ ! -f "\$INPUT_GROUP_FILE" ]; then
@@ -110,10 +119,10 @@ while IFS= read -r input_yaml; do
     sim_id=\$(basename "\$input_yaml" | sed 's/input_\(.*\)\.yaml/\1/')
     output_dir="${OUTPUTS_FOLDER}/output_\${sim_id}"
     
-    echo "Running simulation: \$input_yaml -> \$output_dir"
+    echo "Running simulation: \$input_yaml -> \$output_dir (shared: \$SHARED_TRANSFER_DIR)"
     
     # Run the simulation
-    bash "$ABS_RUN_SCRIPT" "\$input_yaml" "\$output_dir"
+    SHARED_TRANSFER_DIR="\$SHARED_TRANSFER_DIR" bash "$ABS_RUN_SCRIPT" "\$input_yaml" "\$output_dir"
     
     # Check exit status
     if [ \$? -eq 0 ]; then

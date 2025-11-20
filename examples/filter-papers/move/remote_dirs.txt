@@ -1,0 +1,13 @@
+/ark/lilly/roa/ibilion/txt/PMC000xxxxxx/
+/ark/lilly/roa/ibilion/txt/PMC001xxxxxx/
+/ark/lilly/roa/ibilion/txt/PMC002xxxxxx/
+/ark/lilly/roa/ibilion/txt/PMC003xxxxxx/
+/ark/lilly/roa/ibilion/txt/PMC004xxxxxx/
+/ark/lilly/roa/ibilion/txt/PMC005xxxxxx/
+/ark/lilly/roa/ibilion/txt/PMC006xxxxxx/
+/ark/lilly/roa/ibilion/txt/PMC007xxxxxx/
+/ark/lilly/roa/ibilion/txt/PMC008xxxxxx/
+/ark/lilly/roa/ibilion/txt/PMC009xxxxxx/
+/ark/lilly/roa/ibilion/txt/PMC010xxxxxx/
+/ark/lilly/roa/ibilion/txt/PMC011xxxxxx/
+/ark/lilly/roa/ibilion/txt/PMC012xxxxxx/
